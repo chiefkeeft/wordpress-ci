@@ -1,24 +1,27 @@
 sudo: false
 language: php
-
 notifications:
   on_success: never
   on_failure: change
-
 php:
-  - nightly # PHP 7.0
-  - 5.6
-  - 5.5
-  - 5.4
-
+- nightly
+- 5.6
+- 5.5
+- 5.4
 env:
-  - WP_PROJECT_TYPE=plugin WP_VERSION=latest WP_MULTISITE=0 WP_TEST_URL=http://localhost:12000 WP_TEST_USER=test WP_TEST_USER_PASS=test
-
+- WP_PROJECT_TYPE=plugin WP_VERSION=latest WP_MULTISITE=0 WP_TEST_URL=http://localhost:12000
+  WP_TEST_USER=test WP_TEST_USER_PASS=test
 matrix:
   allow_failures:
-    - php: nightly
-
+  - php: nightly
 before_script:
-  # Install composer packages before trying to activate themes or plugins
-  # - composer install
-  - git clone https://github.com/chiefkeeft/wordpress-ci.git
+- git clone https://github.com/chiefkeeft/wordpress-ci.git
+deploy:
+  provider: openshift
+  user: chiefkeeft@gmail.com
+  password:
+    secure: PKWDphPGO9CBBRY4/V6V0y1eDZmRf1eHCNCHSOuCmLbspj2JZr52WSqc1UDfen2hvFJVIDrzhlyQFbYXymd+QyZ4fu67x4naV40aqPRLyXbA10UqKwHRmbDIjgqwj/0H6qw0Ph26S6gEZsb8W8uc9rxxdOvQuep/SIdk05reFMi2QfPngt7UddWiUmsU7EmQONqrKwvgb+Z9B+vJk1Whl8XE87yR+go1p9375e6lh5NdpKYse3S0RoV9VIr9mZoDT6cxmh6PSsdm+nukKkExpUCsmQvzHlFqXONK77GK8JVZLAcA7YXSKv4cPvg5dBWt9etexHkyIedVi3W8Q3a5xQODIcfaLeP7GPGW4Do10iV5qOi99KY++QDtSJerIMDeISUIysBNq/qAwRux7ryvhtndRdq/tFbj4lrs4JfAdqb00LtOu9mnEeAhll0pNHHSPkGym3NvhA0qnZJ8FhbmkeAP7hMAwy89+5My8vNY9BgkkMb3fIGTIxK/FiNoaAJsHajLLljx7hTDDzf4wH/BU+6V724phUOJONS7vHzFzWli6noLnCPngs5gOlRZkF1xc7I0ri5gH8bja1c5Of5Auorans36uNxDP0ysUax0ZEetjVA9ZHNT7/nsI/j1lIxWP5er0GamjjCJgp7Rl+crDuRQXncdkVeYve4dx3VRRGY=
+  app: wordpress-ci
+  domain: starter-us-west-2.openshift.com
+  on:
+    repo: chiefkeeft/wordpress-ci
