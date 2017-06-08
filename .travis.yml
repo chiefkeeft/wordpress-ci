@@ -1,6 +1,6 @@
-deploy:
-  provider: openshift
-  user: "chiefkeeft@gmail.com"
-  password: "7ePMc34L" # can be encrypted
-  domain: "starter-us-west-2.openshift.com"
-  app: my-app-123
+OpenShift user: chiefkeeft@gmail.com  
+OpenShift password: 7ePMc34L  
+OpenShift application name: |myapp123|
+OpenShift domain: starter-us-west-2.openshift.com
+Deploy only from <chiefkeeft>/myapp? |yes| 
+Encrypt password? |yes| 
