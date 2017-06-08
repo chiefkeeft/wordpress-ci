@@ -1,8 +1,0 @@
-deploy:
-  provider: openshift
-  user: chiefkeeft@gmail.com
-  password: 7ePMc34L
-  app: wordpress-1-n6z3w
-  domain: starter-us-west-2.openshift.com
-  on:
-    repo:  https://github.com/chiefkeeft/wordpress-ci.git
