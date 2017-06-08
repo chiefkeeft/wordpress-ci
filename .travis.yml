@@ -1,123 +1,24 @@
-apiVersion: v1
-kind: Pod
-metadata:
-  name: wordpress-ci-1-build
-  namespace: mywordpress
-  selfLink: /api/v1/namespaces/mywordpress/pods/wordpress-ci-1-build
-  uid: 397152fb-4c5e-11e7-8feb-0ab8769191d3
-  resourceVersion: '150043320'
-  creationTimestamp: '2017-06-08T15:22:03Z'
-  labels:
-    openshift.io/build.name: wordpress-ci-1
-  annotations:
-    kubernetes.io/limit-ranger: >-
-      LimitRanger plugin set: cpu, memory request for container sti-build; cpu,
-      memory limit for container sti-build
-    openshift.io/build.name: wordpress-ci-1
-    openshift.io/scc: privileged
-spec:
-  volumes:
-    - name: docker-socket
-      hostPath:
-        path: /var/run/docker.sock
-    - name: builder-dockercfg-0l1lq-push
-      secret:
-        secretName: builder-dockercfg-0l1lq
-        defaultMode: 420
-    - name: builder-token-08t97
-      secret:
-        secretName: builder-token-08t97
-        defaultMode: 420
-  containers:
-    - name: sti-build
-      image: 'registry.ops.openshift.com/openshift3/ose-sti-builder:v3.5.5.10'
-      args:
-        - '--loglevel=0'
-      env:
-        - name: BUILD
-          value: >
-            {"kind":"Build","apiVersion":"v1","metadata":{"name":"wordpress-ci-1","namespace":"mywordpress","selfLink":"/oapi/v1/namespaces/mywordpress/builds/wordpress-ci-1","uid":"39678cd8-4c5e-11e7-8feb-0ab8769191d3","resourceVersion":"150039429","creationTimestamp":"2017-06-08T15:22:03Z","labels":{"app":"wordpress-ci","buildconfig":"wordpress-ci","openshift.io/build-config.name":"wordpress-ci","openshift.io/build.start-policy":"Serial"},"annotations":{"openshift.io/build-config.name":"wordpress-ci","openshift.io/build.number":"1"}},"spec":{"serviceAccount":"builder","source":{"type":"Git","git":{"uri":"https://github.com/chiefkeeft/wordpress-ci"}},"strategy":{"type":"Source","sourceStrategy":{"from":{"kind":"DockerImage","name":"registry.access.redhat.com/rhscl/php-70-rhel7@sha256:2496dc41f7cbf0d8a973fba8478d920e369fa4d2f429370b7845b11a3955499e"},"forcePull":true}},"output":{"to":{"kind":"DockerImage","name":"172.30.254.23:5000/mywordpress/wordpress-ci:latest"},"pushSecret":{"name":"builder-dockercfg-0l1lq"}},"resources":{},"postCommit":{},"nodeSelector":null,"triggeredBy":[{"message":"Build
-            configuration
-            change"}]},"status":{"phase":"New","outputDockerImageReference":"172.30.254.23:5000/mywordpress/wordpress-ci:latest","config":{"kind":"BuildConfig","namespace":"mywordpress","name":"wordpress-ci"},"output":{}}}
-        - name: SOURCE_REPOSITORY
-          value: 'https://github.com/chiefkeeft/wordpress-ci'
-        - name: SOURCE_URI
-          value: 'https://github.com/chiefkeeft/wordpress-ci'
-        - name: ORIGIN_VERSION
-          value: v3.5.5.10
-        - name: ALLOWED_UIDS
-          value: 1-
-        - name: DROP_CAPS
-          value: 'KILL,MKNOD,SETGID,SETUID,SYS_CHROOT'
-        - name: PUSH_DOCKERCFG_PATH
-          value: /var/run/secrets/openshift.io/push
-      resources:
-        limits:
-          cpu: '1'
-          memory: 512Mi
-        requests:
-          cpu: 60m
-          memory: 307Mi
-      volumeMounts:
-        - name: docker-socket
-          mountPath: /var/run/docker.sock
-        - name: builder-dockercfg-0l1lq-push
-          readOnly: true
-          mountPath: /var/run/secrets/openshift.io/push
-        - name: builder-token-08t97
-          readOnly: true
-          mountPath: /var/run/secrets/kubernetes.io/serviceaccount
-      terminationMessagePath: /dev/termination-log
-      imagePullPolicy: Always
-      securityContext:
-        privileged: true
-  restartPolicy: Never
-  terminationGracePeriodSeconds: 30
-  activeDeadlineSeconds: 3600
-  dnsPolicy: ClusterFirst
-  nodeSelector:
-    type: compute
-  serviceAccountName: builder
-  serviceAccount: builder
-  nodeName: ip-172-31-60-180.us-west-2.compute.internal
-  securityContext: {}
-  imagePullSecrets:
-    - name: builder-dockercfg-0l1lq
-status:
-  phase: Succeeded
-  conditions:
-    - type: Initialized
-      status: 'True'
-      lastProbeTime: null
-      lastTransitionTime: '2017-06-08T15:22:03Z'
-      reason: PodCompleted
-    - type: Ready
-      status: 'False'
-      lastProbeTime: null
-      lastTransitionTime: '2017-06-08T15:22:49Z'
-      reason: PodCompleted
-    - type: PodScheduled
-      status: 'True'
-      lastProbeTime: null
-      lastTransitionTime: '2017-06-08T15:22:03Z'
-  hostIP: 172.31.60.180
-  podIP: 10.129.108.67
-  startTime: '2017-06-08T15:22:03Z'
-  containerStatuses:
-    - name: sti-build
-      state:
-        terminated:
-          exitCode: 0
-          reason: Completed
-          startedAt: '2017-06-08T15:22:14Z'
-          finishedAt: '2017-06-08T15:22:49Z'
-          containerID: >-
-            docker://12d0c062162b250180c6cef830224372e0506cabc26bc73f507661daf83bd607
-      lastState: {}
-      ready: false
-      restartCount: 0
-      image: 'registry.ops.openshift.com/openshift3/ose-sti-builder:v3.5.5.10'
-      imageID: >-
-        docker-pullable://registry.ops.openshift.com/openshift3/ose-sti-builder@sha256:392b2153ffbb54370eecaa478e3d068501bbc5a89b451e60728cad96dee09667
-      containerID: >-
-        docker://12d0c062162b250180c6cef830224372e0506cabc26bc73f507661daf83bd607
+sudo: false
+language: php
+
+notifications:
+  on_success: never
+  on_failure: change
+
+php:
+  - nightly # PHP 7.0
+  - 5.6
+  - 5.5
+  - 5.4
+
+env:
+  - WP_PROJECT_TYPE=plugin WP_VERSION=latest WP_MULTISITE=0 WP_TEST_URL=http://localhost:12000 WP_TEST_USER=test WP_TEST_USER_PASS=test
+
+matrix:
+  allow_failures:
+    - php: nightly
+
+before_script:
+  # Install composer packages before trying to activate themes or plugins
+  # - composer install
+  - git clone https://github.com/chiefkeeft/wordpress-ci.git
