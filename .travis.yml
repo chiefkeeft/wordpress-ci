@@ -1,6 +1,14 @@
+language: php
+php:
+  - '5.4'
+  - '5.5'
+  - '5.6'
+  - '7.0'
+  - '7.1'
+  - hhvm # on Trusty only
+  - nightly
 deploy:
   provider: openshift
-  language: php
   user: chiefkeeft@gmail.com
   password:
     secure: GyLDb7sJFQrSNqZGwJ17C+Bi+glbyvbutT3OYR0tJB1P6WL1hIIT1Ux3HiiQlrmxsDd1pzVnl7KUOcvMVUTOmUd7wxIIO01bFStJNo+6tG8B+SXTy60MjrbYXckgvBXLW65JfA8isXM90CM24Kbqz9ZeFLTKy+NeswvHE/tcRIPCY474SPYx4EhMeVT4tWckjPK9aALR09Qlh+NL90xcC+hr5qTMChdKubm43s71CanZAaEayWsI50kBqSOYVO1nJNxnXv54M0PW5LbAiIC9hs/L4tknRH0m9jqsUu0/oEgEUo0ZYCEBLe9aI9jOU0PswPx92gcixcH7/NjWeLC8y08IcvxEg+3CDc8IiDm4qvCHGu+C6GTBQAaqWy9xnpnl7nH+rQ5DyaswkwEUmrG0NteBQo8vamHPsRU8FpJTBySxu/Xx7S2TP4MqkgeCDG6CC/2QNG18vx9tcl9ZgSdPz8kG5UWAuJAXGKcsqlcfSGTG4lvnEzSxdbo62CY9lzzh7DkOgPqqyMzEATE7QErwtdASeENbKQjGhXzz4AFbbgVic65ZxRRc1vtBeGXhonfzFKvpQLUgPSNtNjMxwe4E7p7rtS03tFcbIwrrJrxjA26NtPKoEZCX1lwV9nCvGQPDnlIQ+fFmWsuPDNa98dWVELH2rlypToYVKSP4rEPR8Ms=
