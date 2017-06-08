@@ -5,7 +5,7 @@ metadata:
   namespace: mywordpress
   selfLink: /api/v1/namespaces/mywordpress/pods/wordpress-ci-1-build
   uid: 397152fb-4c5e-11e7-8feb-0ab8769191d3
-  resourceVersion: '150040547'
+  resourceVersion: '150043320'
   creationTimestamp: '2017-06-08T15:22:03Z'
   labels:
     openshift.io/build.name: wordpress-ci-1
@@ -84,16 +84,18 @@ spec:
   imagePullSecrets:
     - name: builder-dockercfg-0l1lq
 status:
-  phase: Running
+  phase: Succeeded
   conditions:
     - type: Initialized
       status: 'True'
       lastProbeTime: null
       lastTransitionTime: '2017-06-08T15:22:03Z'
+      reason: PodCompleted
     - type: Ready
-      status: 'True'
+      status: 'False'
       lastProbeTime: null
-      lastTransitionTime: '2017-06-08T15:22:15Z'
+      lastTransitionTime: '2017-06-08T15:22:49Z'
+      reason: PodCompleted
     - type: PodScheduled
       status: 'True'
       lastProbeTime: null
@@ -104,14 +106,18 @@ status:
   containerStatuses:
     - name: sti-build
       state:
-        running:
+        terminated:
+          exitCode: 0
+          reason: Completed
           startedAt: '2017-06-08T15:22:14Z'
+          finishedAt: '2017-06-08T15:22:49Z'
+          containerID: >-
+            docker://12d0c062162b250180c6cef830224372e0506cabc26bc73f507661daf83bd607
       lastState: {}
-      ready: true
+      ready: false
       restartCount: 0
       image: 'registry.ops.openshift.com/openshift3/ose-sti-builder:v3.5.5.10'
       imageID: >-
         docker-pullable://registry.ops.openshift.com/openshift3/ose-sti-builder@sha256:392b2153ffbb54370eecaa478e3d068501bbc5a89b451e60728cad96dee09667
       containerID: >-
         docker://12d0c062162b250180c6cef830224372e0506cabc26bc73f507661daf83bd607
-
