@@ -5,4 +5,4 @@ deploy:
   app: wordpress-1-n6z3w
   domain: starter-us-west-2.openshift.com
   on:
-    repo: chiefkeeft/wordpress-ci
+    repo:  https://github.com/chiefkeeft/wordpress-ci.git
