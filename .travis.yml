@@ -1,0 +1,5 @@
+deploy:
+  provider: openshift
+  user: "chiefkeeft@gmail.com"
+  password: "7ePMc34L" # can be encrypted
+  domain: "starter-us-west-2.openshift.com"
