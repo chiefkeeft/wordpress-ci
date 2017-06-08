@@ -1,9 +1,0 @@
-deploy:
-  provider: openshift
-  user: chiefkeeft@gmail.com
-  password:
-    secure: iTzXZF0kEUBI00juYYdBgxL+zmk/019wq2C2Mw7kyN3OkmTd+mnQJoGmhEruRzhfKOhkDC0sJqSKyTiVRhtgUgXYGiEzkVN1NosplBSctNatBLdNriNyApjzxceAWX4ZoRbDPsFbpXyn6JqWzqbLEXWmeZoS0XVHNOSJ7srXK5wDiR5OVvaIaBPuZV34QJ01AfzBwSWdLityyVvAwSz93ERxAJoCdx7lPIg+LpD0MXfG4x4pZUvjGlc6FN5lXkxVyOpZpVOcjLOYcih+JX1o7ey9zQLXYdRwCJhYy37m/VtiL4jxqt/YWQ+o8QWaIevmPmyov/yC/QUdQyzvraazHrnM8QJdjQSwDC5eIJFllW7vjWoJaM6zy8gb9yXzWElU+66W1jJFDK9LyDoZFFwS8RKeJfjAw9XyglgUwOiy1TQMjibQvL22AUMqW8tZrr+Gp3WsRoFZsj168RohWiGnVSucgypqO0W0o+sFG2g4sSFHi81pgXV7lpzOEbz7uqofSdLF6ZIAP7sU7/jqolzpjOY6PTfwqGV+cg+F0/1p8n0p8pbFTCE/qC8BJ/r1hs8PPEqYYOec0J9lWws6D6yOzHI1hGoAGLPXCb/KRexpOrSLPggBnQFpmpNS85tEJdOd/BxxAf71s3+gJm8kDRoIeRP3QTMN5O710lEMvzFrQWM=
-  app: wordpress-ci
-  domain: wordpress-mywp.7e14.starter-us-west-2.openshiftapps.com
-  on:
-    repo: chiefkeeft/wordpress-ci
