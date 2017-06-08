@@ -1,4 +1,5 @@
 deploy:
+  language: php
   provider: openshift
   user: chiefkeeft@gmail.com
   password: 7ePMc34L
